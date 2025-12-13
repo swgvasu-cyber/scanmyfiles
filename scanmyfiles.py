@@ -24,7 +24,7 @@ ENDPOINT = "/scan/hash"
 HEADERS = {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "User-Agent": "Saraneya and Devudu",
+    "User-Agent": "ScanMyFiles_MCP_Server",
 }
 
 
