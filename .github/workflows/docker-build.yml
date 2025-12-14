@@ -17,4 +17,4 @@ jobs:
       run: docker build -t scanmyfiles-mcp:latest .
     
     - name: Tag image
-      run: docker tag scanmyfiles-mcp:latest ScanMyFiles-MCP:latest
+      run: docker tag scanmyfiles-mcp:latest scanmyfiles-mcp:latest
