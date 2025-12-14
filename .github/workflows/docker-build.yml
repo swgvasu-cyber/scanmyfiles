@@ -1,0 +1,20 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build Docker image
+      run: docker build -t scanmyfiles-mcp:latest .
+    
+    - name: Tag image
+      run: docker tag scanmyfiles-mcp:latest ScanMyFiles-MCP:latest

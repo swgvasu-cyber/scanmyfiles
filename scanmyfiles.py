@@ -1,4 +1,5 @@
 import logging
+import os
 from typing import Any, Dict
 
 import httpx
@@ -18,7 +19,7 @@ mcp = FastMCP("ScanMyFile")
 # -------------------------------------------------
 # API Config (matches curl exactly)
 # -------------------------------------------------
-BASE_URL = "http://localhost:8000"
+BASE_URL = os.getenv("SCAN_SERVICE_URL", "http://localhost:8000")
 ENDPOINT = "/scan/hash"
 
 HEADERS = {
@@ -85,7 +86,11 @@ async def scan_my_file(sha256_hash: str) -> str:
 # Entry Point
 # -------------------------------------------------
 def main():
-    mcp.run(transport="stdio")
+    host = os.getenv("MCP_HOST", "0.0.0.0")
+    port = int(os.getenv("MCP_PORT", "8000"))
+    
+    logger.info(f"Starting MCP server on {host}:{port}")
+    mcp.run(transport="sse", host=host, port=port)
 
 
 if __name__ == "__main__":
